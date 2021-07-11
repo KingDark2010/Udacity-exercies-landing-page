@@ -1,1 +1,1 @@
-# Udacity-exercies-landing-page
+# Udacity-exercise-landing-page
