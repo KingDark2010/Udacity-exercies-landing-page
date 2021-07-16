@@ -19,7 +19,7 @@
 */
 const sections = document.querySelectorAll('section');
 console.log(sections[0]);
-const navBarUl = document.querySelector('ul');
+const navBarUl = document.querySelector('ul#navbar__list');
 console.log(navBarUl);
 
 
@@ -48,11 +48,17 @@ function navBarItem(item) {
 
 navBarItem(navBarUl)
 // Add class 'active' to section when near top of viewport
-
+function isActive (event) {
+    
+}
 
 // Scroll to anchor ID using scrollTO event
-
-
+function smoothScrolling(event) {
+    const clicked = document.querySelector(event.target.hash)
+    console.log(clicked)
+    clicked.scrollIntoView({'behavior':'smooth'});
+    event.preventDefault()
+}
 /**
  * End Main Functions
  * Begin Events
@@ -62,7 +68,7 @@ navBarItem(navBarUl)
 // Build menu 
 
 // Scroll to section on link click
-
+navBarUl.addEventListener('click', smoothScrolling);
 // Set sections as active
 
 
