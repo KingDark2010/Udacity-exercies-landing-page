@@ -36,6 +36,13 @@ function navBarItem(item) {
     });
 };
 
+/* referance to getboundclinetreact => https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect && https://www.javascripttutorial.net/dom/css/check-if-an-element-is-visible-in-the-viewport/ */
+
+function isInViewport(elem) {
+    const rect = elem.getBoundingClientRect();
+    return rect.top < 400 && rect.bottom > 550;
+}
+
 
 
 /**
@@ -48,9 +55,16 @@ function navBarItem(item) {
 
 navBarItem(navBarUl)
 // Add class 'active' to section when near top of viewport
-function isActive (event) {
-    
+function isActive() {
+    for (let section of sections) {
+        if (isInViewport(section)) {
+            section.classList.add('your-active-class');
+        } else {
+            section.classList.remove('your-active-class');
+        }
+    }
 }
+
 
 // Scroll to anchor ID using scrollTO event
 function smoothScrolling(event) {
@@ -70,5 +84,5 @@ function smoothScrolling(event) {
 // Scroll to section on link click
 navBarUl.addEventListener('click', smoothScrolling);
 // Set sections as active
-
+document.addEventListener('scroll', isActive)
 
