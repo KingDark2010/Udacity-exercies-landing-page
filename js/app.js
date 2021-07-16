@@ -18,32 +18,18 @@
  * 
 */
 const sections = document.querySelectorAll('section');
-console.log(sections[0]);
 const navBarUl = document.querySelector('ul#navbar__list');
-console.log(navBarUl);
-
-
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
-function navBarItem(item) {
-    sections.forEach(function (section){
-        const navBarLi = document.createElement('li');
-        navBarLi.innerHTML = `<a href="#${section.id}" class="menu__link">${section.getAttribute('id')}</a>`;
-        item.appendChild(navBarLi);
-    });
-};
-
 /* referance to getboundclinetreact => https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect && https://www.javascripttutorial.net/dom/css/check-if-an-element-is-visible-in-the-viewport/ */
 
 function isInViewport(elem) {
     const rect = elem.getBoundingClientRect();
     return rect.top < 400 && rect.bottom > 550;
 }
-
-
 
 /**
  * End Helper Functions
@@ -52,8 +38,13 @@ function isInViewport(elem) {
 */
 
 // build the nav
-
-navBarItem(navBarUl)
+function navBarItem() {
+    sections.forEach(function (section){
+        const navBarLi = document.createElement('li');
+        navBarLi.innerHTML = `<a href="#${section.id}" class="menu__link">${section.getAttribute('id')}</a>`;
+        navBarUl.appendChild(navBarLi);
+    });
+};
 // Add class 'active' to section when near top of viewport
 function isActive() {
     for (let section of sections) {
@@ -80,7 +71,7 @@ function smoothScrolling(event) {
 */
 
 // Build menu 
-
+document.addEventListener('DOMContentLoaded', navBarItem)
 // Scroll to section on link click
 navBarUl.addEventListener('click', smoothScrolling);
 // Set sections as active
